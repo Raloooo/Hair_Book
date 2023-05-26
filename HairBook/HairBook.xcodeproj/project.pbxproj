@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B885698F2A212D3F004381BE /* StyleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885698E2A212D3E004381BE /* StyleInfo.swift */; };
 		B8D405912A20DB0200913A5C /* HairBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D405902A20DB0200913A5C /* HairBookApp.swift */; };
 		B8D405932A20DB0200913A5C /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D405922A20DB0200913A5C /* AppMain.swift */; };
 		B8D405952A20DB0700913A5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8D405942A20DB0700913A5C /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B885698E2A212D3E004381BE /* StyleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleInfo.swift; sourceTree = "<group>"; };
 		B8D4058D2A20DB0200913A5C /* HairBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HairBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D405902A20DB0200913A5C /* HairBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairBookApp.swift; sourceTree = "<group>"; };
 		B8D405922A20DB0200913A5C /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMain.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				B8D405922A20DB0200913A5C /* AppMain.swift */,
 				B8D405902A20DB0200913A5C /* HairBookApp.swift */,
+				B885698E2A212D3E004381BE /* StyleInfo.swift */,
 			);
 			path = Main_Page;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				B8D405A72A20F82900913A5C /* AppDelegate.swift in Sources */,
 				B8D405932A20DB0200913A5C /* AppMain.swift in Sources */,
 				B8D405912A20DB0200913A5C /* HairBookApp.swift in Sources */,
+				B885698F2A212D3F004381BE /* StyleInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +328,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HairBook/Preview Content\"";
+				DEVELOPMENT_TEAM = M4NGQJ86B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -332,6 +337,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,6 +360,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HairBook/Preview Content\"";
+				DEVELOPMENT_TEAM = M4NGQJ86B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -362,6 +369,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
