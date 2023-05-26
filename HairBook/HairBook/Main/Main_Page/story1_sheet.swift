@@ -1,15 +1,17 @@
-//
-//  StyleInfo.swift
-//  HairBook
-//
-//  Created by 신동혁 on 2023/05/27.
-//
+
+
+
+
+//연보라 끼얹은 발레아쥬 염색 후기 💜
+
+
+
 
 import SwiftUI
 
 
 
-struct StyleInfo: View {
+struct story1_sheet: View {
 
     var body: some View {
         ZStack{
@@ -17,7 +19,7 @@ struct StyleInfo: View {
             NavigationView{
                 ScrollView {
                     VStack {
-                        Image("hairstyle1")
+                        Image("hairstyle2")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 413, height: 413)
@@ -34,7 +36,7 @@ struct StyleInfo: View {
                                 Text("모질          탈색          숱          기장          얼굴형 ")
 
                             }
-                            Text("직모          1회          많음         장발      역삼각형 ")
+                            Text("곱슬          2회          많음         장발      역삼각형 ")
                             VStack{
                                 Spacer()
                                 Spacer()
@@ -56,11 +58,9 @@ struct StyleInfo: View {
                             HStack{
                                 
                                 Text("이 헤어의 만족도?").font(.body).bold()
-                                ForEach(0..<4) { _ in
+                                ForEach(0..<5) { _ in
                                     Image(systemName: "star.fill").font(.system(size: 15)).foregroundColor(.yellow)
                                 }
-                                Image(systemName: "star").font(.system(size: 15))
-                                        .foregroundColor(.yellow)
                                 
                                 
                                     
@@ -76,7 +76,11 @@ struct StyleInfo: View {
                             }
                             
                         }
-                    Text("새로운 스타일로 변화를 주고 싶을 떈 펌과 염색만 한 게 없죠! ").font(.system(size: 15)).padding(.leading , 12)
+                    HStack{
+                        Text("기분 전환이 필요한 시기, 발레아쥬 염색을 결정하게 되었어요. 새로운 스타일로 변화를 주고 싶을 떈 펌과 염색만 한 게 없죠! 색이 진짜 잘 나왔습니다! 이 정도까지는 예상하지도 못했는데, 제 생각보다 더 잘 나온 색깔에 하루종일 기분이 좋았어요 .. ! 제가 시도한 스타일은 아까도 말씀드렸듯이 발레아쥬 염색인데 , 발레아쥬라는 단어가 생소하신 분들도 있을 것 같아 먼저 발레아쥬가 무엇을 뜻하는지부터 알려드릴게요! 칠하다(paint)라는 뜻이 담겨있는 발레아쥬는 페인트를 칠하듯이 뿌리부터 아래쪽까지 가닥가닥 새로로 작업하여 자연스러운 하이라이트 효과를 내는 헤어스타일입니다! 일정하게 간격을 두거나 반복적이고 규칙적인 디자인에서 벗어나 디자이너의 감성으로 자유로운 표현이 가능하니까 유니크하고 더 자연스럽게 연출할 수 있겠죠? ").font(.system(size: 15)).padding(.leading , 12)
+                    }.frame(width: 380)
+                    
+                    
 
                         
                         
@@ -106,7 +110,7 @@ struct StyleInfo: View {
                 }
         }
         
-        }
+    }
 
     
     
@@ -115,12 +119,12 @@ struct StyleInfo: View {
     var titleSection : some View{
         VStack{
             HStack{
-                Text("한 쪽으로 땋은 머리 스타일링 쉽게 하기!").font(.system(size: 20)).fontWeight(.bold)
+                Text("연보라 끼얹은 발레아쥬 염색 후기 💜").font(.system(size: 20)).fontWeight(.bold)
                 
-            }.padding(.trailing, 27)
+            }.padding(.trailing, 50)
             Spacer()
             HStack{
-                Text("2023.05.25 - 조회 1140회").font(.footnote).foregroundColor(Color.gray)
+                Text("2023.05.20 - 조회 6,742회").font(.footnote).foregroundColor(Color.gray)
                 
             }.padding(.trailing, 185)
             
@@ -128,8 +132,8 @@ struct StyleInfo: View {
     }
     
 }
-struct StyleInfo_Previews: PreviewProvider {
+struct story1_sheet_Previews: PreviewProvider {
     static var previews: some View {
-        StyleInfo()
+        story1_sheet()
     }
 }

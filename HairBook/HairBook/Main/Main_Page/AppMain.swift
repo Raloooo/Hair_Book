@@ -16,34 +16,38 @@ struct AppMainPage: View {
 //    let images = ["hairstyle1", "hairstyle1", "hairstyle1", "hairstyle1", "hairstyle1"]
     
     var body: some View {
-        TabView(selection: $whichtabSelected){
-            HomeView()
-                .tabItem{
-                    Image(systemName: "house")
-                }
-                .tag(0)
-            searchView(whichtabSelected: $whichtabSelected)
-                .tabItem{
-                    Image(systemName: "magnifyingglass")
-                }
-                .tag(1)
-            writeView(whichtabSelected: $whichtabSelected)
-                .tabItem{
-                    Image(systemName: "plus.circle")
-                }
-                .tag(2)
-            tagView(whichtabSelected: $whichtabSelected)
-                .tabItem{
-                    Image(systemName: "bookmark")
-                }
-                .tag(3)
-            userView(whichtabSelected: $whichtabSelected)
-                .tabItem{
-                    Image(systemName: "person.circle")
-                }
-                .tag(4)
-                
+        ZStack{
+            Color.white.ignoresSafeArea()
+            TabView(selection: $whichtabSelected){
+                HomeView()
+                    .tabItem{
+                        Image(systemName: "house")
+                    }
+                    .tag(0)
+                searchView(whichtabSelected: $whichtabSelected)
+                    .tabItem{
+                        Image(systemName: "magnifyingglass")
+                    }
+                    .tag(1)
+                writeView(whichtabSelected: $whichtabSelected)
+                    .tabItem{
+                        Image(systemName: "plus.circle")
+                    }
+                    .tag(2)
+                tagView(whichtabSelected: $whichtabSelected)
+                    .tabItem{
+                        Image(systemName: "bookmark")
+                    }
+                    .tag(3)
+                userView(whichtabSelected: $whichtabSelected)
+                    .tabItem{
+                        Image(systemName: "person.circle")
+                    }
+                    .tag(4)
+                    
+            }
         }
+        
         
         
     }
@@ -175,15 +179,204 @@ struct searchView: View {
     
     @Binding var whichtabSelected: Int
     
+    @State var text : String = ""
+    @State var textediting : Bool = false
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
+                    HStack{
+                        TextField("검색어를 넣어주세요" , text : self.$text).padding(15).padding(.horizontal,15).background(Color(.systemGray6)).cornerRadius(15)
+                            .overlay{
+                                HStack{
+                                    Spacer()
+                                    
+                                    if self.textediting{
+                                        Button(action : {
+                                            textediting = false
+                                            text = ""
+                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                        }){
+                                            Image(systemName: "multiply.circle.fill").foregroundColor(Color.black)
+                                                .padding()
+                                        }
+                                    }else{
+                                        Image(systemName: "magnifyingglass")
+                                        .foregroundColor(Color.black)
+                                        .padding()
+                                    }
+                                }
+                            }.onTapGesture {
+                                self.textediting = true
+                            }
+                    }
                     
-                
-                
-                     
-                    
+                    Group{
+                        VStack{
+                            Spacer()
+                            Spacer()
+                            
+                        }
+                        HStack{
+                            Text("오늘 많이 검색된 키워드").font(.title3).bold()
+                                .padding(.top, 10)
+                            Spacer()
+                        }
+                        VStack{
+                            Spacer()
+                            Spacer()
+                            
+                        }
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            
+                            HStack(spacing: 10) {
+                                TagButton(tag: "01 포니테일")
+                                TagButton(tag: "02 뉴진스")
+                                TagButton(tag: "03 웬디컷")
+                                TagButton(tag: "04 김우빈")
+                                TagButton(tag: "05 반깐머리")
+                                TagButton(tag: "06 반묶음머리")
+                            }.padding(.horizontal, 20)
+                            
+                        }
+                        VStack{
+                            Spacer()
+                            Spacer()
+                            
+                        }
+                        HStack{
+                            Text("추천 포스트").font(.title3).bold()
+                                .padding(.top, 10)
+                            Spacer()
+                        }
+                        Group{
+                            VStack{
+                                GeometryReader{ geometry in
+                                    
+                                }
+                                HStack(spacing: 5){
+                                    Image("hairstyle2")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 120, height: 120)
+                                    VStack(spacing: 5){
+                                        Text("연보라 끼얹은 발레아쥬 염색 후기 💜")
+                                            .font(.system(size: 13))
+                                            .fontWeight(.bold)
+                                        Text("2023.05.25 - 조회 1,140회")
+                                            .font(.system(size: 13))
+                                            .foregroundColor(.gray)
+                                            .padding(.trailing,40)
+                                        Spacer()
+                                        HStack{
+                                            heartheart
+                                            Text("256").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            message
+                                            Text("12").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            
+                                        }.padding(.trailing,87)
+                                        
+                                        
+                                            
+                                    }.padding()
+                                }
+                                HStack(spacing: 5){
+                                    Image("hairstyle3")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 120, height: 120)
+                                    VStack(spacing: 5){
+                                        Text("한 손으로도 가능한 똥머리 묶기 😍")
+                                            .font(.system(size: 13))
+                                            .fontWeight(.bold)
+                                        Text("2023.05.20 - 조회 7,340회")
+                                            .font(.system(size: 13))
+                                            .foregroundColor(.gray)
+                                            .padding(.trailing,25)
+                                        Spacer()
+                                        HStack{
+                                            heartheart
+                                            Text("480").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            message
+                                            Text("54").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            
+                                        }.padding(.trailing,87)
+                                        
+                                        
+                                            
+                                    }.padding()
+                                }
+                                HStack(spacing: 5){
+                                    Image("hairstyle4")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 120, height: 120)
+                                    VStack(spacing: 5){
+                                        Text("악세사리 포인트 예쁘게 주는 법 ♥️")
+                                            .font(.system(size: 13))
+                                            .fontWeight(.bold)
+                                        
+                                        Text("2023.05.20 - 조회 7,340회")
+                                            .font(.system(size: 13))
+                                            .foregroundColor(.gray)
+                                            .padding(.trailing,27)
+                                        Spacer()
+                                        HStack{
+                                            heartheart
+                                            Text("215").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            message
+                                            Text("50").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            
+                                        }.padding(.trailing,87)
+                                        
+                                        
+                                            
+                                    }.padding()
+                                }
+                                
+                                HStack(spacing: 5){
+                                    Image("hairstyle_1")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 120, height: 120)
+                                    VStack(spacing: 5){
+                                        Text("땋은 머리 스타일링 쉽게 하기!")
+                                            .font(.system(size: 13))
+                                            .fontWeight(.bold)
+                                            .padding(.trailing,30)
+                                        
+                                        Text("2023.05.20 - 조회 7,340회")
+                                            .font(.system(size: 13))
+                                            .foregroundColor(.gray)
+                                            .padding(.trailing,27)
+                                        Spacer()
+                                        HStack{
+                                            heartheart
+                                            Text("343").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            message
+                                            Text("72").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            
+                                        }.padding(.trailing,87)
+                                        
+                                        
+                                            
+                                    }.padding()
+                                }
+
+                                HStack{
+                                    
+                                }
+                            }
+                        }
+                    }
                     
                 }
                 .navigationBarItems(
@@ -196,17 +389,26 @@ struct searchView: View {
                         }
                     },
                     trailing: HStack {
-//                        Button(action: {
-//                            // 알림 심볼 동작
-//                        }) {
-//                            Text("등록")
-//                        }
+                        Button(action: {
+                            // 알림 심볼 동작
+                        }) {
+                            Image(systemName: "bell")
+                                .font(.title2)
+                                .foregroundColor(.black)
+                        }
                     }
                 )
                 .padding()
             }
         }
 
+    }
+    var heartheart : some View{
+        Image(systemName: "heart").foregroundColor(.red)
+    }
+    
+    var message : some View{
+        Image(systemName: "ellipsis.message")
     }
 }
 
@@ -254,141 +456,163 @@ struct writeView: View {
                     }
                     
                     VStack{
-                        HStack{
-                            TextField("제목을 입력해주세요", text: $title).frame(width: 360)
+                        Group{
+                            HStack{
+                                TextField("제목을 입력해주세요", text: $title).frame(width: 360)
+                            }
+                            HStack{
+                                TextEditor(text: $mainContent)
+                                    .frame(width: 360, height: 200)
+                                    .cornerRadius(20)
+                                    .border(Color.gray, width: 1)
+                                    .padding()
+                            }
                         }
-                        HStack{
-                            TextEditor(text: $mainContent)
-                                .frame(width: 360, height: 200)
-                                .cornerRadius(20)
-                                .border(Color.gray, width: 1)
-                                .padding()
-                        }
-                    
+                                            
+                        Group{
+                            HStack{
+                                Text("모질")
+                                    .font(.title3).padding(.horizontal,20)
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    
+                                    HStack(spacing: 10) {
+                                        
+                                        hairButton(tag: "직모")
+                                        hairButton(tag: "반곱슬")
+                                        hairButton(tag: "곱슬")
+                                        hairButton(tag: "직접입력")
+                                    }.padding(.horizontal, 20)
+                                    
+                                }
+                                
+                            }
+                            
+                            HStack{
+                                Text("얼굴형")
+                                    .font(.title3).padding(.horizontal,20)
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    
+                                    HStack(spacing: 10) {
+                                        
+                                        hairButton(tag: "긴")
+                                        hairButton(tag: "둥근")
+                                        hairButton(tag: "각진")
+                                        hairButton(tag: "하트")
+                                        hairButton(tag: "계란")
+                                        hairButton(tag: "역삼각")
+                                        hairButton(tag: "직접입력")
+                                    }.padding(.horizontal, 20)
+                                    
+                                }
+                                
+                            }
+                            
+                            HStack{
+                                Text("숱")
+                                    .font(.title3).padding(.horizontal,20)
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    
+                                    HStack(spacing: 10) {
+                                        
+                                        hairButton(tag: "적음")
+                                        hairButton(tag: "보통")
+                                        hairButton(tag: "많음")
+                                        hairButton(tag: "직접입력")
+                                    }.padding(.horizontal, 20)
+                                    
+                                }
+                                
+                            }
+                            
+                            HStack{
+                                Text("탈색")
+                                    .font(.title3).padding(.horizontal,20)
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    
+                                    HStack(spacing: 10) {
+                                        
+                                        hairButton(tag: "0회")
+                                        hairButton(tag: "1회")
+                                        hairButton(tag: "2회")
+                                        hairButton(tag: "3회")
+                                        hairButton(tag: "직접입력")
+                                    }.padding(.horizontal, 20)
+                                    
+                                }
+                                
+                            }
+                            HStack{
+                                Text("퍼스널컬러")
+                                    .font(.title3).padding(.horizontal,20)
+                                ScrollView(.horizontal, showsIndicators: false) {
 
-                        HStack{
-                            Text("모질")
-                                .font(.title3).padding(.horizontal,20)
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                
-                                HStack(spacing: 10) {
-                                    
-                                    hairButton(tag: "직모")
-                                    hairButton(tag: "반곱슬")
-                                    hairButton(tag: "곱슬")
-                                    hairButton(tag: "직접입력")
-                                }.padding(.horizontal, 20)
-                                
+                                    HStack(spacing: 10) {
+
+                                        hairButton(tag: "봄웜")
+                                        hairButton(tag: "여름쿨")
+                                        hairButton(tag: "가을웜")
+                                        hairButton(tag: "겨울쿨")
+                                        hairButton(tag: "직접입력")
+                                    }.padding(.horizontal, 20)
+
+                                }
+
+                            }
+                            HStack{
+                                Text("기장")
+                                    .font(.title3).padding(.horizontal,20)
+                                ScrollView(.horizontal, showsIndicators: false) {
+
+                                    HStack(spacing: 10) {
+
+                                        hairButton(tag: "짧음")
+                                        hairButton(tag: "중간")
+                                        hairButton(tag: "길다")
+                                        hairButton(tag: "직접입력")
+                                    }.padding(.horizontal, 20)
+
+                                }
+
+                            }
+
+                        }
+                                                
+                        
+                        
+                        
+                        Group{
+                            VStack{
+                                Spacer()
+                                Spacer()
                             }
                             
-                        }
-                        
-                        HStack{
-                            Text("얼굴형")
-                                .font(.title3).padding(.horizontal,20)
-                            ScrollView(.horizontal, showsIndicators: false) {
+                            HStack{
+                                Text("이 헤어의 만족도는?")
+                                    .font(.title3).padding(.horizontal,20)
+                                ForEach(0..<5){
+                                    index in
+                                    Image(systemName: filledStars >= index ? "star.fill" : "star")
+                                        .font(.title3)
+                                        .foregroundColor(.yellow)
+                                        .onTapGesture {
+                                            filledStars = index
+                                        }
+                                }
+                                Spacer()
                                 
-                                HStack(spacing: 10) {
-                                    
-                                    hairButton(tag: "긴")
-                                    hairButton(tag: "둥근")
-                                    hairButton(tag: "각진")
-                                    hairButton(tag: "하트")
-                                    hairButton(tag: "계란")
-                                    hairButton(tag: "역삼각")
-                                    hairButton(tag: "직접입력")
-                                }.padding(.horizontal, 20)
                                 
                             }
-                            
-                        }
-                        
-                        HStack{
-                            Text("숱")
-                                .font(.title3).padding(.horizontal,20)
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                
-                                HStack(spacing: 10) {
-                                    
-                                    hairButton(tag: "적음")
-                                    hairButton(tag: "보통")
-                                    hairButton(tag: "많음")
-                                    hairButton(tag: "직접입력")
-                                }.padding(.horizontal, 20)
+                            VStack{
+                                Spacer()
+                                Spacer()
+                            }
+                            VStack(alignment : .leading){
+                                Text("해시태그")
+                                    .font(.title3).padding(.horizontal,20)
+                                TextField("해시태그를 작성해 보세요!", text: $title).frame(width: 360).padding(.horizontal,20)
                                 
                             }
-                            
                         }
-                        
-                        HStack{
-                            Text("탈색")
-                                .font(.title3).padding(.horizontal,20)
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                
-                                HStack(spacing: 10) {
-                                    
-                                    hairButton(tag: "0회")
-                                    hairButton(tag: "1회")
-                                    hairButton(tag: "2회")
-                                    hairButton(tag: "3회")
-                                    hairButton(tag: "직접입력")
-                                }.padding(.horizontal, 20)
-                                
-                            }
-                            
-                        }
-                        
-                        
-                        
-//                        HStack{
-//                            Text("퍼스널컬러")
-//                                .font(.title3).padding(.horizontal,20)
-//                            ScrollView(.horizontal, showsIndicators: false) {
-//
-//                                HStack(spacing: 10) {
-//
-//                                    hairButton(tag: "봄웜")
-//                                    hairButton(tag: "여름쿨")
-//                                    hairButton(tag: "가을웜")
-//                                    hairButton(tag: "겨울쿨")
-//                                    hairButton(tag: "직접입력")
-//                                }.padding(.horizontal, 20)
-//
-//                            }
-//
-//                        }
-                        
-                        Spacer()
-                        
-                        HStack{
-                            Text("이 헤어의 만족도는?")
-                                .font(.title3).padding(.horizontal,20)
-                            ForEach(0..<5){
-                                index in
-                                Image(systemName: filledStars >= index ? "star.fill" : "star")
-                                    .font(.title3)
-                                    .foregroundColor(.yellow)
-                                    .onTapGesture {
-                                        filledStars = index
-                                    }
-                            }
-                            Spacer()
-                            
-                            
-                        }
-                        Spacer()
-                        VStack(alignment : .leading){
-                            Text("해시태그")
-                                .font(.title3).padding(.horizontal,20)
-                            TextField("해시태그를 작성해 보세요!", text: $title).frame(width: 360).padding(.horizontal,20)
-                            
-                        }
-                        
-                        
-                        
-                        
-                        
-                        
                         
                     }
                 
@@ -416,6 +640,7 @@ struct writeView: View {
         }
 
     }
+    
 }
 
 struct tagView: View {
@@ -427,10 +652,91 @@ struct tagView: View {
             ScrollView {
                 VStack {
                     
-                
-                
-                     
+                    HStack{
+                        Text("북마크").font(.title2).bold()
+                            .padding(.top, 10)
+                        Spacer()
+                    }
+                    Group{
+                        VStack{
+                            Spacer()
+                            Spacer()
+                        }
+                        HStack{
+                            Text("1개의 포스트").font(.title3).bold()
+                                .padding(.top, 10).foregroundColor(.gray)
+                            Spacer()
+                        }
+                        
+                        VStack{
+                            Spacer()
+                            Spacer()
+                        }
+                        
+                        HStack{
+                            Text("-------------------------------------").font(.title3).bold().padding(.top, 10).foregroundColor(.gray)
+                            Spacer()
+                        }
+                        
+//                        HStack{
+//                            VStack{
+//                                Text("악세사리 포인트 예쁘게 주는 법 ♥️")
+//                                    .font(.system(size: 13))
+//                                    .fontWeight(.bold)
+//
+//                                Text("2023.05.20 - 조회 7,340회")
+//                                    .font(.system(size: 13))
+//                                    .foregroundColor(.gray)
+//                                    .padding(.trailing,27)
+//                                Spacer()
+//                                HStack{
+//                                    Image(systemName: "heart")
+//                                    Text("215").font(.system(size: 13))
+//                                        .foregroundColor(.gray)
+//                                    Image(systemName: "ellipsis.message")
+//                                    Text("50").font(.system(size: 13))
+//                                        .foregroundColor(.gray)
+//
+//                                }.padding(.trailing,87)
+//                            }
+//
+//                        }
+                        HStack(spacing: 5){
+//                            Image("hairstyle4")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: 120, height: 120)
+                            VStack(spacing: 5){
+                                Text("악세사리 포인트 예쁘게 주는 법 ♥️")
+                                    .font(.system(size: 18))
+                                    .fontWeight(.bold)
+                                    .padding(.trailing,55)
+                                
+                                Text("2023.05.20 - 조회 7,340회")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.gray)
+                                    .padding(.trailing,123)
+                                Spacer()
+                                HStack{
+                                    Text("@username01").font(.system(size: 15)).foregroundColor(.gray)
+                                    Image(systemName: "heart")
+                                    Text("215").font(.system(size: 15))
+                                        .foregroundColor(.gray)
+                                    Image(systemName: "ellipsis.message")
+                                    Text("50").font(.system(size: 15))
+                                        .foregroundColor(.gray)
+                                    
+                                }.padding(.trailing,87)
+                                
+                                
+                                    
+                            }.padding()
+                            
+                            Spacer()
+                        }
                     
+                    }
+                
 
                 }
                 .navigationBarItems(
@@ -443,18 +749,21 @@ struct tagView: View {
                         }
                     },
                     trailing: HStack {
-//                        Button(action: {
-//                            // 알림 심볼 동작
-//                        }) {
-//                            Text("등록")
-//                        }
+                        Button(action: {
+                            // 알림 심볼 동작
+                        }) {
+                            Image(systemName: "bell")
+                                .font(.title2)
+                                .foregroundColor(.black)
+                        }
                     }
                 )
                 .padding()
             }
         }
-
+    
     }
+    
 }
 
 
@@ -536,90 +845,108 @@ struct userView: View {
                             GeometryReader{ geometry in
                                 
                             }
+                            
                             HStack(spacing: 5){
                                 Image("hairstyle2")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 120, height: 120)
-                                VStack(spacing: 5){
-                                    Text("연보라 끼얹은 발레아쥬 염색 후기 💜")
-                                        .font(.system(size: 13))
-                                        .fontWeight(.bold)
-                                    Text("2023.05.25 - 조회 1,140회")
-                                        .font(.system(size: 13))
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing,40)
-                                    Spacer()
-                                    HStack{
-                                        heartheart
-                                        Text("256").font(.system(size: 13))
+                                Button(action: {
+                                    // Handle tag button tapped
+                                }) {
+                                    VStack(spacing: 5){
+                                        Text("연보라 끼얹은 발레아쥬 염색 후기 💜")
+                                            .font(.system(size: 13))
+                                            .foregroundColor(.black)
+                                            .fontWeight(.bold)
+                                        Text("2023.05.25 - 조회 1,140회")
+                                            .font(.system(size: 13))
                                             .foregroundColor(.gray)
-                                        message
-                                        Text("12").font(.system(size: 13))
-                                            .foregroundColor(.gray)
+                                            .padding(.trailing,40)
+                                        Spacer()
+                                        HStack{
+                                            heartheart
+                                            Text("256").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            message
+                                            Text("12").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            
+                                        }.padding(.trailing,87)
                                         
-                                    }.padding(.trailing,87)
-                                    
-                                    
-                                        
-                                }.padding()
+                            
+                                            
+                                    }.padding()
+                                }
+                                
                             }
                             HStack(spacing: 5){
                                 Image("hairstyle3")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 120, height: 120)
-                                VStack(spacing: 5){
-                                    Text("한 손으로도 가능한 똥머리 묶기 😍")
-                                        .font(.system(size: 13))
-                                        .fontWeight(.bold)
-                                    Text("2023.05.20 - 조회 7,340회")
-                                        .font(.system(size: 13))
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing,40)
-                                    Spacer()
-                                    HStack{
-                                        heartheart
-                                        Text("480").font(.system(size: 13))
+                                Button(action: {
+                                    // Handle tag button tapped
+                                }) {
+                                    VStack(spacing: 5){
+                                        Text("한 손으로도 가능한 똥머리 묶기 😍")
+                                            .font(.system(size: 13))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.black)
+                                        Text("2023.05.20 - 조회 7,340회")
+                                            .font(.system(size: 13))
                                             .foregroundColor(.gray)
-                                        message
-                                        Text("54").font(.system(size: 13))
-                                            .foregroundColor(.gray)
+                                            .padding(.trailing,25)
+                                        Spacer()
+                                        HStack{
+                                            heartheart
+                                            Text("480").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            message
+                                            Text("54").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            
+                                        }.padding(.trailing,87)
                                         
-                                    }.padding(.trailing,87)
-                                    
-                                    
                                         
-                                }.padding()
+                                            
+                                    }.padding()
+                                }
                             }
                             HStack(spacing: 5){
                                 Image("hairstyle4")
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 120, height: 120)
-                                VStack(spacing: 5){
-                                    Text("악세사리 포인트 예쁘게 주는 법 ♥️")
-                                        .font(.system(size: 13))
-                                        .fontWeight(.bold)
-                                    
-                                    Text("2023.05.20 - 조회 7,340회")
-                                        .font(.system(size: 13))
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing,27)
-                                    Spacer()
-                                    HStack{
-                                        heartheart
-                                        Text("215").font(.system(size: 13))
-                                            .foregroundColor(.gray)
-                                        message
-                                        Text("50").font(.system(size: 13))
-                                            .foregroundColor(.gray)
+                                Button(action: {
+                                    // Handle tag button tapped
+                                }) {
+                                    VStack(spacing: 5){
+                                        Text("악세사리 포인트 예쁘게 주는 법 ♥️")
+                                            .font(.system(size: 13))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.black)
                                         
-                                    }.padding(.trailing,87)
-                                    
-                                    
+                                        Text("2023.05.20 - 조회 7,340회")
+                                            .font(.system(size: 13))
+                                            .foregroundColor(.gray)
+                                            .padding(.trailing,27)
+                                        Spacer()
+                                        HStack{
+                                            heartheart
+                                            Text("215").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            message
+                                            Text("50").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            
+                                        }.padding(.trailing,87)
                                         
-                                }.padding()
+                                        
+                                            
+                                    }.padding()
+                                }
+                                
                             }
                             
                             HStack(spacing: 5){
@@ -627,30 +954,37 @@ struct userView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: 120, height: 120)
-                                VStack(spacing: 5){
-                                    Text("땋은 머리 스타일링 쉽게 하기!")
-                                        .font(.system(size: 13))
-                                        .fontWeight(.bold)
-                                        .padding(.trailing,30)
-                                    
-                                    Text("2023.05.20 - 조회 7,340회")
-                                        .font(.system(size: 13))
-                                        .foregroundColor(.gray)
-                                        .padding(.trailing,27)
-                                    Spacer()
-                                    HStack{
-                                        heartheart
-                                        Text("343").font(.system(size: 13))
-                                            .foregroundColor(.gray)
-                                        message
-                                        Text("72").font(.system(size: 13))
-                                            .foregroundColor(.gray)
+                                Button(action: {
+                                    // Handle tag button tapped
+                                }) {
+                                    VStack(spacing: 5){
+                                        Text("땋은 머리 스타일링 쉽게 하기!")
+                                            .font(.system(size: 13))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.black)
+                                            .padding(.trailing,30)
                                         
-                                    }.padding(.trailing,87)
-                                    
-                                    
+                                        Text("2023.05.20 - 조회 7,340회")
+                                            .font(.system(size: 13))
+                                            .foregroundColor(.gray)
+                                            .padding(.trailing,27)
+                                        Spacer()
+                                        HStack{
+                                            heartheart
+                                            Text("343").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            message
+                                            Text("72").font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                            
+                                        }.padding(.trailing,87)
                                         
-                                }.padding()
+                                        
+                                            
+                                    }.padding()
+                                }
+                                
+                            
                             }
 
                             HStack{
@@ -693,7 +1027,7 @@ struct userView: View {
     }
     
     var message : some View{
-        Image(systemName: "ellipsis.message")
+        Image(systemName: "ellipsis.message").foregroundColor(.black)
     }
 }
 

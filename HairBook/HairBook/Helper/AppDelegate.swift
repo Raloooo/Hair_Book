@@ -9,7 +9,7 @@ import SwiftUI
 
 class AppDelegate: NSObject, UIApplicationDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool{
-        sleep(2)
+        sleep(10)
         return true
     }
 }
