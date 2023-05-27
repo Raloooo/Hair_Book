@@ -10,7 +10,9 @@ import SwiftUI
 struct AppMainPage: View {
     
     @State private var currentPage = 0
-    @State private var whichtabSelected = 0
+    @State private var whichtabSelected = -1
+    
+    @State private var willAppear: Bool = false
 
     
 //    let images = ["hairstyle1", "hairstyle1", "hairstyle1", "hairstyle1", "hairstyle1"]
@@ -18,6 +20,7 @@ struct AppMainPage: View {
     var body: some View {
         ZStack{
             Color.white.ignoresSafeArea()
+//            
             TabView(selection: $whichtabSelected){
                 HomeView()
                     .tabItem{
@@ -44,8 +47,17 @@ struct AppMainPage: View {
                         Image(systemName: "person.circle")
                     }
                     .tag(4)
+                
+            }.opacity(willAppear ? 1 : 0)
+                .animation(.easeInOut(duration: 0.4))
+                .onAppear{
+                    self.willAppear = true
                     
-            }
+                    self.whichtabSelected = 0
+                }
+                .onDisappear{
+                    self.willAppear = false
+                }
         }
         
         
@@ -181,6 +193,13 @@ struct searchView: View {
     
     @State var text : String = ""
     @State var textediting : Bool = false
+    
+    
+    
+    @State var sheetshow1 : Bool = false
+    @State var sheetshow2 : Bool = false
+    @State var sheetshow3 : Bool = false
+    @State var sheetshow4 : Bool = false
     var body: some View {
         NavigationView {
             ScrollView {
@@ -259,85 +278,119 @@ struct searchView: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 120, height: 120)
-                                    VStack(spacing: 5){
-                                        Text("연보라 끼얹은 발레아쥬 염색 후기 💜")
-                                            .font(.system(size: 13))
-                                            .fontWeight(.bold)
-                                        Text("2023.05.25 - 조회 1,140회")
-                                            .font(.system(size: 13))
-                                            .foregroundColor(.gray)
-                                            .padding(.trailing,40)
-                                        Spacer()
-                                        HStack{
-                                            heartheart
-                                            Text("256").font(.system(size: 13))
+                                    Button(action: {
+                                        sheetshow1 = true
+                                        sheetshow2 = false
+                                        sheetshow3 = false
+                                        sheetshow4 = false
+                                    }) {
+                                        VStack(spacing: 5){
+                                            Text("연보라 끼얹은 발레아쥬 염색 후기 💜")
+                                                .font(.system(size: 13))
+                                                .fontWeight(.bold)
+                                                .foregroundColor(Color.black)
+                                            Text("2023.05.25 - 조회 1,140회")
+                                                .font(.system(size: 13))
                                                 .foregroundColor(.gray)
-                                            message
-                                            Text("12").font(.system(size: 13))
-                                                .foregroundColor(.gray)
+                                                .padding(.trailing,40)
+                                            Spacer()
+                                            HStack{
+                                                heartheart
+                                                Text("256").font(.system(size: 13))
+                                                    .foregroundColor(.gray)
+                                                message
+                                                Text("12").font(.system(size: 13))
+                                                    .foregroundColor(.gray)
+                                                
+                                            }.padding(.trailing,87)
                                             
-                                        }.padding(.trailing,87)
-                                        
-                                        
                                             
-                                    }.padding()
+                                                
+                                        }.padding()
+                                    }.sheet(isPresented: $sheetshow1){
+                                        story1_sheet()
+                                    }
+                                    
                                 }
                                 HStack(spacing: 5){
                                     Image("hairstyle3")
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 120, height: 120)
-                                    VStack(spacing: 5){
-                                        Text("한 손으로도 가능한 똥머리 묶기 😍")
-                                            .font(.system(size: 13))
-                                            .fontWeight(.bold)
-                                        Text("2023.05.20 - 조회 7,340회")
-                                            .font(.system(size: 13))
-                                            .foregroundColor(.gray)
-                                            .padding(.trailing,25)
-                                        Spacer()
-                                        HStack{
-                                            heartheart
-                                            Text("480").font(.system(size: 13))
+                                    Button(action: {
+                                        sheetshow1 = false
+                                        sheetshow2 = true
+                                        sheetshow3 = false
+                                        sheetshow4 = false
+                                    }) {
+                                        VStack(spacing: 5){
+                                            Text("한 손으로도 가능한 똥머리 묶기 😍")
+                                                .font(.system(size: 13))
+                                                .fontWeight(.bold)
+                                                .foregroundColor(Color.black)
+                                            Text("2023.05.20 - 조회 7,340회")
+                                                .font(.system(size: 13))
                                                 .foregroundColor(.gray)
-                                            message
-                                            Text("54").font(.system(size: 13))
-                                                .foregroundColor(.gray)
+                                                .padding(.trailing,25)
+                                            Spacer()
+                                            HStack{
+                                                heartheart
+                                                Text("480").font(.system(size: 13))
+                                                    .foregroundColor(.gray)
+                                                message
+                                                Text("54").font(.system(size: 13))
+                                                    .foregroundColor(.gray)
+                                                
+                                            }.padding(.trailing,87)
                                             
-                                        }.padding(.trailing,87)
-                                        
-                                        
                                             
-                                    }.padding()
+                                                
+                                        }.padding()
+                                        
+                                    }.sheet(isPresented: $sheetshow2){
+                                        story2_sheet()
+                                    }
+                                    
                                 }
                                 HStack(spacing: 5){
                                     Image("hairstyle4")
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 120, height: 120)
-                                    VStack(spacing: 5){
-                                        Text("악세사리 포인트 예쁘게 주는 법 ♥️")
-                                            .font(.system(size: 13))
-                                            .fontWeight(.bold)
-                                        
-                                        Text("2023.05.20 - 조회 7,340회")
-                                            .font(.system(size: 13))
-                                            .foregroundColor(.gray)
-                                            .padding(.trailing,27)
-                                        Spacer()
-                                        HStack{
-                                            heartheart
-                                            Text("215").font(.system(size: 13))
-                                                .foregroundColor(.gray)
-                                            message
-                                            Text("50").font(.system(size: 13))
-                                                .foregroundColor(.gray)
+                                    Button(action: {
+                                        sheetshow1 = false
+                                        sheetshow2 = false
+                                        sheetshow3 = true
+                                        sheetshow4 = false
+                                    }) {
+                                        VStack(spacing: 5){
+                                            Text("악세사리 포인트 예쁘게 주는 법 ♥️")
+                                                .font(.system(size: 13))
+                                                .fontWeight(.bold)
+                                                .foregroundColor(Color.black)
                                             
-                                        }.padding(.trailing,87)
-                                        
-                                        
+                                            Text("2023.05.20 - 조회 7,340회")
+                                                .font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                                .padding(.trailing,27)
+                                            Spacer()
+                                            HStack{
+                                                heartheart
+                                                Text("215").font(.system(size: 13))
+                                                    .foregroundColor(.gray)
+                                                message
+                                                Text("50").font(.system(size: 13))
+                                                    .foregroundColor(.gray)
+                                                
+                                            }.padding(.trailing,87)
                                             
-                                    }.padding()
+                                            
+                                                
+                                        }.padding()
+                                    }.sheet(isPresented: $sheetshow3){
+                                        story3_sheet()
+                                    }
+                                    
                                 }
                                 
                                 HStack(spacing: 5){
@@ -345,35 +398,44 @@ struct searchView: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 120, height: 120)
-                                    VStack(spacing: 5){
-                                        Text("땋은 머리 스타일링 쉽게 하기!")
-                                            .font(.system(size: 13))
-                                            .fontWeight(.bold)
-                                            .padding(.trailing,30)
-                                        
-                                        Text("2023.05.20 - 조회 7,340회")
-                                            .font(.system(size: 13))
-                                            .foregroundColor(.gray)
-                                            .padding(.trailing,27)
-                                        Spacer()
-                                        HStack{
-                                            heartheart
-                                            Text("343").font(.system(size: 13))
-                                                .foregroundColor(.gray)
-                                            message
-                                            Text("72").font(.system(size: 13))
-                                                .foregroundColor(.gray)
+                                    Button(action: {
+                                        sheetshow1 = false
+                                        sheetshow2 = false
+                                        sheetshow3 = false
+                                        sheetshow4 = true
+                                    }) {
+                                        VStack(spacing: 5){
+                                            Text("땋은 머리 스타일링 쉽게 하기!")
+                                                .font(.system(size: 13))
+                                                .fontWeight(.bold)
+                                                .padding(.trailing,30)
+                                                .foregroundColor(Color.black)
                                             
-                                        }.padding(.trailing,87)
-                                        
-                                        
+                                            Text("2023.05.20 - 조회 7,340회")
+                                                .font(.system(size: 13))
+                                                .foregroundColor(.gray)
+                                                .padding(.trailing,27)
+                                            Spacer()
+                                            HStack{
+                                                heartheart
+                                                Text("343").font(.system(size: 13))
+                                                    .foregroundColor(.gray)
+                                                message
+                                                Text("72").font(.system(size: 13))
+                                                    .foregroundColor(.gray)
+                                                
+                                            }.padding(.trailing,87)
                                             
-                                    }.padding()
-                                }
-
-                                HStack{
+                                            
+                                                
+                                        }.padding()
+                                        
+                                    }.sheet(isPresented: $sheetshow4){
+                                        StyleInfo()
+                                    }
                                     
                                 }
+
                             }
                         }
                     }
@@ -408,7 +470,7 @@ struct searchView: View {
     }
     
     var message : some View{
-        Image(systemName: "ellipsis.message")
+        Image(systemName: "ellipsis.message").foregroundColor(Color.black)
     }
 }
 
@@ -426,6 +488,9 @@ struct writeView: View {
     @State private var mainContent: String = ""
 
     @State private var filledStars = 0
+    
+    
+    @State private var selectedButtons: Set<String> = [] // 선택한 버튼들을 관리하는 Set
     
     var body: some View {
         NavigationView {
@@ -477,7 +542,10 @@ struct writeView: View {
                                     
                                     HStack(spacing: 10) {
                                         
-                                        hairButton(tag: "직모")
+                                        hairButton(tag: "직모").foregroundColor(selectedButtons.contains("직모") ? .blue : .black)
+                                            .onTapGesture {
+                                                toggleBtn(tag: "직모")
+                                            }
                                         hairButton(tag: "반곱슬")
                                         hairButton(tag: "곱슬")
                                         hairButton(tag: "직접입력")
@@ -640,6 +708,13 @@ struct writeView: View {
         }
 
     }
+    private func toggleBtn(tag: String){
+        if selectedButtons.contains(tag){
+            selectedButtons.remove(tag)
+        }else{
+            selectedButtons.insert(tag)
+        }
+    }
     
 }
 
@@ -768,7 +843,10 @@ struct tagView: View {
 
 
 struct userView: View {
-    
+    @State private var selectTab1 = false
+    @State private var selectTab2 = false
+    @State private var selectTab3 = false
+    @State private var selectTab4 = false
     @Binding var whichtabSelected: Int
     
     var body: some View {
@@ -852,7 +930,10 @@ struct userView: View {
                                     .scaledToFit()
                                     .frame(width: 120, height: 120)
                                 Button(action: {
-                                    // Handle tag button tapped
+                                    selectTab1 = false
+                                    selectTab2 = true
+                                    selectTab3 = false
+                                    selectTab4 = false
                                 }) {
                                     VStack(spacing: 5){
                                         Text("연보라 끼얹은 발레아쥬 염색 후기 💜")
@@ -877,6 +958,8 @@ struct userView: View {
                             
                                             
                                     }.padding()
+                                }.sheet(isPresented: $selectTab2){
+                                    story1_sheet()
                                 }
                                 
                             }
@@ -886,7 +969,10 @@ struct userView: View {
                                     .scaledToFit()
                                     .frame(width: 120, height: 120)
                                 Button(action: {
-                                    // Handle tag button tapped
+                                    selectTab1 = false
+                                    selectTab2 = false
+                                    selectTab3 = true
+                                    selectTab4 = false
                                 }) {
                                     VStack(spacing: 5){
                                         Text("한 손으로도 가능한 똥머리 묶기 😍")
@@ -911,6 +997,8 @@ struct userView: View {
                                         
                                             
                                     }.padding()
+                                }.sheet(isPresented: $selectTab3){
+                                    story2_sheet()
                                 }
                             }
                             HStack(spacing: 5){
@@ -919,7 +1007,10 @@ struct userView: View {
                                     .scaledToFit()
                                     .frame(width: 120, height: 120)
                                 Button(action: {
-                                    // Handle tag button tapped
+                                    selectTab1 = false
+                                    selectTab2 = false
+                                    selectTab3 = false
+                                    selectTab4 = true
                                 }) {
                                     VStack(spacing: 5){
                                         Text("악세사리 포인트 예쁘게 주는 법 ♥️")
@@ -945,8 +1036,9 @@ struct userView: View {
                                         
                                             
                                     }.padding()
+                                }.sheet(isPresented: $selectTab4){
+                                    story3_sheet()
                                 }
-                                
                             }
                             
                             HStack(spacing: 5){
@@ -955,7 +1047,10 @@ struct userView: View {
                                     .scaledToFit()
                                     .frame(width: 120, height: 120)
                                 Button(action: {
-                                    // Handle tag button tapped
+                                    selectTab1 = true
+                                    selectTab2 = false
+                                    selectTab3 = false
+                                    selectTab4 = false
                                 }) {
                                     VStack(spacing: 5){
                                         Text("땋은 머리 스타일링 쉽게 하기!")
@@ -982,14 +1077,13 @@ struct userView: View {
                                         
                                             
                                     }.padding()
+                                }.sheet(isPresented : $selectTab1){
+                                    StyleInfo()
                                 }
                                 
                             
                             }
 
-                            HStack{
-                                
-                            }
                         }
                     }
                 
@@ -1054,7 +1148,6 @@ struct TagButton: View {
 
 struct hairButton: View {
     var tag: String
-    
     var body: some View {
         Button(action: {
             // Handle tag button tapped
@@ -1065,6 +1158,9 @@ struct hairButton: View {
                 .padding(10)
                 .background(Color.white)
                 .cornerRadius(10)
+                .onTapGesture {
+                    
+                }
         }
     }
 }

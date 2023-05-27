@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B859FCBE2A21710E00372A04 /* story1_sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B859FCBD2A21710E00372A04 /* story1_sheet.swift */; };
+		B859FCC02A217D7200372A04 /* story2_sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B859FCBF2A217D7200372A04 /* story2_sheet.swift */; };
+		B859FCC22A217FBF00372A04 /* story3_sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B859FCC12A217FBF00372A04 /* story3_sheet.swift */; };
 		B885698F2A212D3F004381BE /* StyleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B885698E2A212D3E004381BE /* StyleInfo.swift */; };
 		B8D405912A20DB0200913A5C /* HairBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D405902A20DB0200913A5C /* HairBookApp.swift */; };
 		B8D405932A20DB0200913A5C /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D405922A20DB0200913A5C /* AppMain.swift */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		B859FCBD2A21710E00372A04 /* story1_sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = story1_sheet.swift; sourceTree = "<group>"; };
+		B859FCBF2A217D7200372A04 /* story2_sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = story2_sheet.swift; sourceTree = "<group>"; };
+		B859FCC12A217FBF00372A04 /* story3_sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = story3_sheet.swift; sourceTree = "<group>"; };
 		B885698E2A212D3E004381BE /* StyleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleInfo.swift; sourceTree = "<group>"; };
 		B8D4058D2A20DB0200913A5C /* HairBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HairBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8D405902A20DB0200913A5C /* HairBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairBookApp.swift; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 				B8D405902A20DB0200913A5C /* HairBookApp.swift */,
 				B885698E2A212D3E004381BE /* StyleInfo.swift */,
 				B859FCBD2A21710E00372A04 /* story1_sheet.swift */,
+				B859FCBF2A217D7200372A04 /* story2_sheet.swift */,
+				B859FCC12A217FBF00372A04 /* story3_sheet.swift */,
 			);
 			path = Main_Page;
 			sourceTree = "<group>";
@@ -198,9 +204,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B859FCC02A217D7200372A04 /* story2_sheet.swift in Sources */,
 				B8D405A72A20F82900913A5C /* AppDelegate.swift in Sources */,
 				B859FCBE2A21710E00372A04 /* story1_sheet.swift in Sources */,
 				B8D405932A20DB0200913A5C /* AppMain.swift in Sources */,
+				B859FCC22A217FBF00372A04 /* story3_sheet.swift in Sources */,
 				B8D405912A20DB0200913A5C /* HairBookApp.swift in Sources */,
 				B885698F2A212D3F004381BE /* StyleInfo.swift in Sources */,
 			);

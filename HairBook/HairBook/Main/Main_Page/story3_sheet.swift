@@ -1,5 +1,5 @@
 //
-//  StyleInfo.swift
+//  story3_sheet.swift
 //  HairBook
 //
 //  Created by 신동혁 on 2023/05/27.
@@ -8,16 +8,15 @@
 import SwiftUI
 
 
-
-struct StyleInfo: View {
-
+//악세사리 포인트 예쁘게 주는 법 ♥️
+struct story3_sheet: View {
     var body: some View {
         ZStack{
             Color.white.ignoresSafeArea()
             NavigationView{
                 ScrollView {
                     VStack {
-                        Image("hairstyle_1")
+                        Image("hairstyle4")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 413, height: 413)
@@ -34,7 +33,7 @@ struct StyleInfo: View {
                                 Text("모질          탈색          숱          기장          얼굴형 ")
 
                             }
-                            Text("직모          1회          많음         장발      역삼각형 ")
+                            Text("직모          2회          적음         장발         달걀형 ")
                             VStack{
                                 Spacer()
                                 Spacer()
@@ -44,7 +43,7 @@ struct StyleInfo: View {
                             HStack{
                                 
                                 Text("퍼스널컬러").font(.body).bold()
-                                Text("가을 웜 딥").font(.body)
+                                Text("겨울 쿨 딥").font(.body)
                                 
                             }.padding(.trailing, 185)
                             
@@ -56,11 +55,10 @@ struct StyleInfo: View {
                             HStack{
                                 
                                 Text("이 헤어의 만족도?").font(.body).bold()
-                                ForEach(0..<4) { _ in
+                                ForEach(0..<5) { _ in
                                     Image(systemName: "star.fill").font(.system(size: 15)).foregroundColor(.yellow)
                                 }
-                                Image(systemName: "star").font(.system(size: 15))
-                                        .foregroundColor(.yellow)
+                                
                                 
                                 
                                     
@@ -76,7 +74,11 @@ struct StyleInfo: View {
                             }
                             
                         }
-                    Text("새로운 스타일로 변화를 주고 싶을 떈 펌과 염색만 한 게 없죠! ").font(.system(size: 15)).padding(.leading , 12)
+                    HStack{
+                        Text("악세사리는 패션을 완성시키는 중요한 요소이며, 잘 활용하면 개성적이고 매력적인 스타일을 구축할 수 있습니다. 지금부터 제가 드리는 팁을 참고하여 자유로운 시도를 통해 독특한 매력을 발산해보세요!").font(.system(size: 15)).padding(.leading , 12)
+                    }.frame(width: 370)
+                    
+                    
 
                         
                         
@@ -84,12 +86,11 @@ struct StyleInfo: View {
                         
                         
                     }
-
                     .padding()
                 }
         }
         
-        }
+    }
 
     
     
@@ -98,21 +99,21 @@ struct StyleInfo: View {
     var titleSection : some View{
         VStack{
             HStack{
-                Text("한 쪽으로 땋은 머리 스타일링 쉽게 하기!").font(.system(size: 20)).fontWeight(.bold)
+                Text("악세사리 포인트 예쁘게 주는 법 ♥️").font(.system(size: 20)).fontWeight(.bold)
                 
-            }.padding(.trailing, 27)
+            }.padding(.trailing, 70)
             Spacer()
             HStack{
-                Text("2023.05.25 - 조회 1140회").font(.footnote).foregroundColor(Color.gray)
+                Text("2023.05.19 - 조회 7,870회").font(.footnote).foregroundColor(Color.gray)
                 
             }.padding(.trailing, 185)
             
         }
     }
-    
 }
-struct StyleInfo_Previews: PreviewProvider {
+
+struct story3_sheet_Previews: PreviewProvider {
     static var previews: some View {
-        StyleInfo()
+        story3_sheet()
     }
 }
